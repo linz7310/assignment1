@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 二叉树层序遍历
+ * Binary Tree Level Order Traversal
  */
-public class E01Leetcode102 {
+public class BinaryTreeLevelOrderTraversal {
 
     /*
         [
@@ -25,10 +25,10 @@ public class E01Leetcode102 {
 
         LinkedListQueue<TreeNode> queue = new LinkedListQueue<>();
         queue.offer(root);
-        int c1 = 1; // 当前层节点数
+        int c1 = 1; // Number of nodes in current layer
         while (!queue.isEmpty()) {
-            List<Integer> level = new ArrayList<>(); // 保存每一层结果
-            int c2 = 0; // 下一层节点数
+            List<Integer> level = new ArrayList<>(); // Save results for each layer
+            int c2 = 0; // Number of nodes in next layer
             for (int i = 0; i < c1; i++) {
                 TreeNode n = queue.poll();
                 level.add(n.val);
@@ -73,7 +73,7 @@ public class E01Leetcode102 {
                         new TreeNode(7)
                 )
         );
-        List<List<Integer>> lists = new E01Leetcode102().levelOrder(root);
+        List<List<Integer>> lists = new BinaryTreeLevelOrderTraversal().levelOrder(root);
         for (List<Integer> list : lists) {
             System.out.println(list);
         }

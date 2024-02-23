@@ -1,8 +1,8 @@
 package datastructure.queue;
 
 /**
- * 队列接口
- * @param <E> 队列中元素类型
+ * Queue Interface
+ * @param <E> Types of elements in the queue
  */
 public interface Queue<E> {
 

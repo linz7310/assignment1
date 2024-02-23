@@ -2,7 +2,7 @@ package algorithm.queue;
 
 /**
  * ClassName TreeNode
- * Package algorithm.queue
+ * Package algorithm. Queue
  * Description:
  *
  * @Author: Lin
