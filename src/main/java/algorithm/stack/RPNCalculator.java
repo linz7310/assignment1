@@ -4,7 +4,7 @@ import datastructure.stack.Mystack;
 public class RPNCalculator {
 
     /**
-     * Evaluates the reverse Polish notation expression.
+     * Evaluates the  reverse Polish notation expression.
      *
      * @param tokens An array of strings representing the RPN expression
      * @return The evaluation result of the RPN expression
@@ -18,7 +18,7 @@ public class RPNCalculator {
                 case "-":
                 case "*":
                 case "/":
-                    int num2 = stack.pop(); // 注意：第二个弹出的是第二个操作数
+                    int num2 = stack.pop(); // Note: The second popup is the second operand
                     int num1 = stack.pop();
                     switch (token) {
                         case "+":
@@ -31,7 +31,7 @@ public class RPNCalculator {
                             stack.push(num1 * num2);
                             break;
                         case "/":
-                            stack.push(num1 / num2); // 假设这里不会出现除以0的情况
+                            stack.push(num1 / num2); // Assume that division by 0 does not occur here
                             break;
                     }
                     break;
@@ -45,6 +45,6 @@ public class RPNCalculator {
 
     public static void main(String[] args) {
         String[] tokens = new String[]{"2", "1", "+", "3", "*"};
-        System.out.println(evalRPN(tokens)); // 输出9
+        System.out.println(evalRPN(tokens)); // Output 9
     }
 }
