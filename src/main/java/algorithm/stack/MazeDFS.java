@@ -22,10 +22,10 @@ public class MazeDFS {
     };
 
     static int[][] dirs = {
-            {-1, 0},
-            {0, 1},
             {1, 0},
-            {0, -1}
+            {0, 1},
+            {0, -1},
+            {-1, 0}
     };
 
     static void printPath(Mystack<int[]> stack) {
