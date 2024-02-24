@@ -29,7 +29,7 @@ public class MazeDFS {
     };
 
     static void printPath(Mystack<int[]> stack) {
-        System.out.println("The BFS path is: ");
+        System.out.println("The DFS path is: ");
         ArrayList<int[]> res = new ArrayList<>();
         while(!stack.isEmpty()){
             int[] p = stack.pop();
