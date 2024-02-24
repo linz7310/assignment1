@@ -9,4 +9,5 @@ package algorithm.stack;
  * @Creat: 2024/2/24
  */
 public class stack {
+    hjhjhhj
 }

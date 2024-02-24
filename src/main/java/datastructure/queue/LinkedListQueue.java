@@ -9,6 +9,7 @@ import java.util.StringJoiner;
  * Implementation based on a singly circular linked list
  * @param <E> The type of elements held in this queue
  */
+
 public class LinkedListQueue<E>
         implements Queue<E>, Iterable<E> {
 
