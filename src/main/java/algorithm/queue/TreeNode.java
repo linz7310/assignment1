@@ -3,8 +3,6 @@ package algorithm.queue;
 /**
  * ClassName TreeNode
  * Package algorithm. Queue
- * Description:
- *
  * @Author: Lin
  * @Creat: 2024/2/23
  */
