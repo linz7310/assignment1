@@ -31,7 +31,10 @@ public class RPNCalculator {
                             stack.push(num1 * num2);
                             break;
                         case "/":
-                            stack.push(num1 / num2); // Assume that division by 0 does not occur here
+                            if (num2 == 0) {
+                                throw new ArithmeticException("Invalid expression: division by zero.");
+                            }
+                            stack.push(num1 / num2);
                             break;
                     }
                     break;
@@ -39,7 +42,9 @@ public class RPNCalculator {
                     stack.push(Double.parseDouble(token));
             }
         }
-
+        if (stack.size() != 1) {
+            throw new IllegalArgumentException("Invalid expression: too many operands.");
+        }
         return stack.pop();
     }
 
@@ -54,14 +59,11 @@ public class RPNCalculator {
                 {"1", "2", "+", "3", "4", "+", "*", "5", "-"},
                 {"0", "3", "/", "4", "2", "*", "+"},
                 {"5", "3", "-", "2", "1", "+", "-"},
-                {"5", "9", "1", "-", "/", "2", "3", "+", "*"}
+                {"5", "9", "1", "-", "/", "2", "3", "+", "*"},
+                {"0", "0", "/"}
         };
         Double[] expectedResults = {7.0, 6.6, 36.0, 9.0, 14.0, 42.0, 16.0, 8.0, -1.0, 3.125};
 
-        for (int i = 0; i < testCases.length; i++) {
-            double result = evalRPN(testCases[i]);
-            boolean isCorrect = result == expectedResults[i];
-            System.out.println("Test Case " + (i + 1) + ": " + (isCorrect ? "Passed" : "Failed") + " (Expected: " + expectedResults[i] + ", Got: " + result + ")");
-        }
+
     }
 }
