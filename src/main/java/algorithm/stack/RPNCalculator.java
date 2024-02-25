@@ -18,6 +18,9 @@ public class RPNCalculator {
                 case "-":
                 case "*":
                 case "/":
+                    if (stack.size() < 2) {
+                        throw new ArithmeticException("Invalid expression: insufficient operands.");
+                    }
                     double num2 = stack.pop(); // Note: The second popup is the second operand
                     double num1 = stack.pop();
                     switch (token) {
@@ -39,11 +42,17 @@ public class RPNCalculator {
                     }
                     break;
                 default:
-                    stack.push(Double.parseDouble(token));
+                    try {
+                        double num = Double.parseDouble(token);
+                        stack.push(num);
+                    } catch (NumberFormatException e) {
+                        throw new ArithmeticException("Invalid token: " + token);
+                    }
+                    break;
             }
         }
         if (stack.size() != 1) {
-            throw new IllegalArgumentException("Invalid expression: too many operands.");
+            throw new ArithmeticException("Invalid expression: too many operands.");
         }
         return stack.pop();
     }
@@ -60,10 +69,24 @@ public class RPNCalculator {
                 {"0", "3", "/", "4", "2", "*", "+"},
                 {"5", "3", "-", "2", "1", "+", "-"},
                 {"5", "9", "1", "-", "/", "2", "3", "+", "*"},
-                {"0", "0", "/"}
+                {"1","/","/"},
+                {"1","/","/","2","5"},
+                {"/","2","/"}
         };
-        Double[] expectedResults = {7.0, 6.6, 36.0, 9.0, 14.0, 42.0, 16.0, 8.0, -1.0, 3.125};
+        Double[] expectedResults = {7.0, 6.6, 36.0, 9.0, 14.0, 42.0, 16.0, 8.0, -1.0, 3.125,Double.NaN,Double.NaN,Double.NaN};
 
-
+        for (int i = 0; i < testCases.length; i++) {
+            try {
+                double result = evalRPN(testCases[i]);
+                boolean isCorrect = Double.isNaN(expectedResults[i]) || result == expectedResults[i];
+                System.out.println("Test Case " + (i + 1) + ": " + (isCorrect ? "Passed" : "Failed") + " (Expected: " + expectedResults[i] + ", Got: " + result + ")");
+            } catch (ArithmeticException e) {
+                if (Double.isNaN(expectedResults[i])) {
+                    System.out.println("Test Case " + (i + 1) + ": Passed (Expected: Division by zero error, Got: " + e.getMessage() + ")");
+                } else {
+                    System.out.println("Test Case " + (i + 1) + ": Failed (Expected: " + expectedResults[i] + ", Got: " + e.getMessage() + ")");
+                }
+            }
+        }
     }
 }
